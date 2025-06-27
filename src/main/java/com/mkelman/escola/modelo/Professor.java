@@ -1,13 +1,17 @@
 package com.mkelman.escola.modelo;
 
 public class Professor {
-    
 
     private String nome;
     private String cpf;
 
     @Deprecated
     public Professor() {
+    }
+
+    public Professor(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
     }
 
     public String getNome() {
