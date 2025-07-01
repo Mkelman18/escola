@@ -13,5 +13,11 @@ public class ProfessorCrontroller {
         System.out.println("Chamou o metodo imprimir");
 
     }
+
+    @GetMapping( value = "/ola")
+    public String ola() {
+        return"<h1>Manu<h1>";
+
+    }
     
 }
