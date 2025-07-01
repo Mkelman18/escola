@@ -1,17 +1,28 @@
 package com.mkelman.escola.modelo;
 
-public class Professor {
+import jakarta.persistence.Id;
 
+public class Professor {
+    @Id
+    private Long id;
     private String nome;
     private String cpf;
 
     @Deprecated
-    public Professor() {
+    public Professor (){
     }
 
     public Professor(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -32,7 +43,7 @@ public class Professor {
 
     @Override
     public String toString() {
-        return "Professor [nome=" + nome + ", cpf=" + cpf + "]";
+        return "professor [nome=" + nome + ", cpf=" + cpf + "]";
     }
 
     @Override
@@ -59,4 +70,15 @@ public class Professor {
             return false;
         return true;
     }
+
+ 
+
+    
+
+
+
+
+
+
+
 }

@@ -19,5 +19,9 @@ public class ProfessorCrontroller {
         return"<h1>Manu<h1>";
 
     }
+    @GetMapping (value ="/insert")
+    public String insert() {
+        return"<h1>tentando salvar o professor dos alunos<h2>";
+    }
     
 }
