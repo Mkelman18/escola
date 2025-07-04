@@ -1,10 +1,15 @@
 package com.mkelman.escola.contoller;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mkelman.escola.dto.ProfessorDto;
 import com.mkelman.escola.modelo.Professor;
@@ -28,16 +33,21 @@ public class ProfessorCrontroller {
         return"<h1>Manu <3 </h1>"; //return -> devolve o retorno para quem chamou 
 
     }
-    @GetMapping( value ="/insert") 
-    public String insert(@RequestBody ProfessorDto professorDto) {
+    @PostMapping( value ="/insert") 
+    public ResponseEntity<?> insert(@RequestBody ProfessorDto professorDto) {
 
         Professor professor = professorDto.novoProfessor();
         
         professorRespository.save(professor);
         
         System.out.println(professor.toString());
-        
-        return"<h1>tentando salvar o professor dos alunos</h1>";
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                                             .path("id")
+                                             .buildAndExpand(professor.getId())
+                                             .toUri();
+
+        return ResponseEntity.created(uri).body(professor);
 
     }
     
