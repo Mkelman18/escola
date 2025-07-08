@@ -3,6 +3,8 @@ package com.mkelman.escola.contoller;
 import java.net.URI;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,6 +42,23 @@ public class ProfessorCrontroller {
     @GetMapping ( value = "/listaprofessor")
     public List<Professor> findAll() {
         return professorRespository.findAll();
+    }
+
+    // @GetMapping (value = "/{id}")
+    // public ResponseEntity<Void> select(@PathVariable Long id) {
+    //     professorRespository.select (id);
+    //     return ResponseEntity.noContent().build();
+
+    // }
+
+    @GetMapping ( value = "/{id}")
+    public ResponseEntity<Professor> buscarProfessor (@PathVariable Long id) {
+        Optional<Professor> ProfessorBanco = professorRespository.findById(id);
+
+        // Professor professor = professorBanco.get();
+
+        return ResponseEntity.ok(ProfessorBanco.get());
+
     }
 
     @DeleteMapping (value = "/{id}")
