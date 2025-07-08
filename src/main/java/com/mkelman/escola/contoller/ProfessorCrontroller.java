@@ -44,20 +44,18 @@ public class ProfessorCrontroller {
         return professorRespository.findAll();
     }
 
-    // @GetMapping (value = "/{id}")
-    // public ResponseEntity<Void> select(@PathVariable Long id) {
-    //     professorRespository.select (id);
-    //     return ResponseEntity.noContent().build();
-
-    // }
-
     @GetMapping ( value = "/{id}")
     public ResponseEntity<Professor> buscarProfessor (@PathVariable Long id) {
         Optional<Professor> ProfessorBanco = professorRespository.findById(id);
 
-        // Professor professor = professorBanco.get();
-
         return ResponseEntity.ok(ProfessorBanco.get());
+
+    }
+
+    @GetMapping ( value = "/consultaPorNome")
+    public ResponseEntity<Professor> buscarNome (@PathVariable String nome) {
+        Professor ProfessorBanco = professorRespository.findByIdNome (nome);
+        return ResponseEntity.ok(ProfessorBanco);
 
     }
 
@@ -67,6 +65,7 @@ public class ProfessorCrontroller {
         return ResponseEntity.noContent().build();
     
      }
+
 
     @PostMapping( value ="/insert") 
     public ResponseEntity<?> insert(@RequestBody ProfessorDto professorDto) {
