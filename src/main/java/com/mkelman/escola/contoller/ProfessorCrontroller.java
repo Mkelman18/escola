@@ -2,6 +2,7 @@ package com.mkelman.escola.contoller;
 
 import java.net.URI;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,14 @@ public class ProfessorCrontroller {
         return"<h1>Manu <3 </h1>"; //return -> devolve o retorno para quem chamou 
 
     }
+
+    @GetMapping ( value = "/listaprofessor")
+    public List<Professor> findAll() {
+        return professorRespository.findAll();
+    }
+
+
+
     @PostMapping( value ="/insert") 
     public ResponseEntity<?> insert(@RequestBody ProfessorDto professorDto) {
 
@@ -50,5 +59,6 @@ public class ProfessorCrontroller {
         return ResponseEntity.created(uri).body(professor);
 
     }
+
     
 }
